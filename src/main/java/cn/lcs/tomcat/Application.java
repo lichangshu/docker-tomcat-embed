@@ -7,11 +7,13 @@ import java.util.Map;
 import javax.servlet.ServletException;
 
 import org.apache.catalina.LifecycleException;
+import org.apache.catalina.startup.HostConfig;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.startup.VersionLoggerListener;
 
 /**
- * Hello world!
+ * Tomcat start ! TOMCAT_HOME: /opt/tomcat/, TOMCAT_PORT: 8080, Can cnofig this
+ * env !
  *
  */
 public class Application {
@@ -28,8 +30,9 @@ public class Application {
         tomcat.setPort(port); // HTTP port
         tomcat.setBaseDir(catalinaHome.getAbsolutePath());
         tomcat.getServer().addLifecycleListener(new VersionLoggerListener()); // nice to have
+        tomcat.getHost().addLifecycleListener(new HostConfig());
 
-        //tomcat.getServer().setParentClassLoader(Application.class.getClassLoader());
+        // tomcat.getServer().setParentClassLoader(Application.class.getClassLoader());
 
         tomcat.start();
         tomcat.getServer().await();
