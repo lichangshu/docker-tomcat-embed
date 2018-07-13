@@ -48,7 +48,6 @@ public class Application {
         tomcat.setConnector(connector);
         // tomcat.getHost().setAutoDeploy(false);
         AccessLogValve access = new AccessLogValve();
-        access.setBuffered(false);
         access.setPattern("%h %l %u %t \"%r\" %s %b");
         tomcat.getEngine().getPipeline().addValve(access);
 
